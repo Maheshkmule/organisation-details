@@ -2,9 +2,9 @@ pipeline{
     agent any 
  
     stages{
-        stage('Build Maven'){
+        stage('Checkout version control and Build Maven'){
             steps{
-               checkout([$class: 'GitSCM', branches: [[name: '*/main']], extensions: [], userRemoteConfigs: [[url: 'https://github.com/Maheshkmule/docker-automation.git']]])
+               checkout([$class: 'GitSCM', branches: [[name: '*/main']], extensions: [], userRemoteConfigs: [[url: 'https://github.com/Maheshkmule/organisation-details.git']]])
                 bat 'mvn clean install'
             }
         }
@@ -18,7 +18,7 @@ pipeline{
         stage('Build docker image'){
             steps{
                 script{
-                    bat 'docker build -t maheshmule/docker-automation .'
+                    bat 'docker build -t maheshmule/organisation-details .'
                 }
             }
         }
@@ -28,7 +28,7 @@ pipeline{
                    
                    bat 'docker login -u maheshmule -p 8861347877'
 
-                   bat 'docker push maheshmule/docker-automation '
+                   bat 'docker push maheshmule/organisation-details '
                 }
             }
         }
