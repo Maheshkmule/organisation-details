@@ -18,7 +18,7 @@ pipeline{
         stage('Build docker image'){
             steps{
                 script{
-                    bat 'docker build -t maheshmule/organisation-details .'
+                    bat 'docker build -t maheshmule/springboot-crud-k8s .'
                 }
             }
         }
@@ -28,7 +28,7 @@ pipeline{
                    
                    bat 'docker login -u maheshmule -p 8861347877'
 
-                   bat 'docker push maheshmule/organisation-details '
+                   bat 'docker push maheshmule/springboot-crud-k8s '
                 }
             }
         }
