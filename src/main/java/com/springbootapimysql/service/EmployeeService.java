@@ -46,9 +46,9 @@ public class EmployeeService {
 	    
 		
 		public Employee updateEmployee(Employee employee) {
-			Employee existingEmployee = repository.findById(employee.getSalary()).orElse(null);
+			Employee existingEmployee = repository.findById(employee.getId()).orElse(null);
 	        existingEmployee.setName(employee.getName());
-	        existingEmployee.setId(employee.getId());
+	        existingEmployee.setSalary(employee.getSalary());
 	        existingEmployee.setDesignation(employee.getDesignation());
 	        return repository.save(existingEmployee);
 		}
