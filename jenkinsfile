@@ -5,7 +5,7 @@ pipeline{
         stage('Checkout version control and Build Maven'){
             steps{
                checkout([$class: 'GitSCM', branches: [[name: '*/main']], extensions: [], userRemoteConfigs: [[url: 'https://github.com/Maheshkmule/organisation-details.git']]])
-                bat 'mvn clean install'
+                sh 'mvn clean install'
             }
         }
         stage('create jar file after Build is success'){
@@ -18,7 +18,7 @@ pipeline{
         stage('Build docker image'){
             steps{
                 script{
-                    bat 'docker build -t maheshmule/springboot-crud-k8s .'
+                    sh 'docker build -t maheshmule/springboot-crud-k8s-aws .'
                 }
             }
         }
@@ -26,9 +26,9 @@ pipeline{
             steps{
                 script{
                    
-                   bat 'docker login -u maheshmule -p 8861347877'
+                   sh 'docker login -u maheshmule -p Mahesh#9611'
 
-                   bat 'docker push maheshmule/springboot-crud-k8s '
+                   sh 'docker push maheshmule/springboot-crud-k8s-aws '
                 }
             }
         }
